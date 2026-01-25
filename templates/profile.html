@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>프로필 정보</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <h2>회원 정보</h2>
+      <hr>
+
+      <div class="center" style="margin-bottom: 20px;">
+        {% if user.profile_img %}
+          <img src="{{ url_for('static', filename='uploads/' + user.profile_img) }}" class="profile-img">
+        {% else %}
+          <div class="profile-img-none">No Image</div>
+        {% endif %}
+      </div>
+
+      <div class="profile-info">
+        <p><strong>아이디:</strong> {{ user.id }}</p>
+        <p><strong>이름:</strong> {{ user.name }}</p>
+        <p><strong>학교:</strong> {{ user.school }}</p>
+        <p><strong>성별:</strong> {{ user.gender }}</p>
+        <p><strong>생일:</strong> {{ user.birthdate }}</p>
+      </div>
+
+      <div class="actions center">
+        {% if user.id == session['user_id'] %}
+          <a href="{{ url_for('profile_edit') }}" class="btn">내 정보 수정</a>
+        {% endif %}
+        <a href="{{ url_for('posts_list') }}" class="btn gray">목록으로</a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

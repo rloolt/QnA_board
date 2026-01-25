@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>글 내용</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="page">
+    <div class="panel">
+
+      <div class="post-box">
+        <div class="post-left">
+          <div class="cell head">제목</div>
+          <div class="cell body">내용</div>
+          {% if post.filename %}
+          {% endif %}
+        </div>
+
+        <div class="post-right">
+          <div class="view title">{{ post.title }}</div>
+          <div class="view content" style="min-height: 200px; white-space: pre-wrap;">{{ post.content }}</div>
+          <div class="view meta">작성자: {{ post.author }}</div>
+          
+          {% if post.filename %}
+            <div style="padding: 15px; border-top: 1px solid #ddd;">
+              <a href="{{ url_for('download_file', filename=post.filename) }}" style="color: #007bff; font-weight: bold; text-decoration: none;">
+                {{ post.filename }} [다운로드 클릭]
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="actions right" style="margin-top: 20px;">
+        <a class="btn" href="{{ url_for('posts_list') }}">목록</a>
+
+        {% if session['user_id'] == post.author %}
+          <a class="btn" href="{{ url_for('post_edit', post_id=post.id) }}">수정</a>
+          
+          <form action="{{ url_for('post_delete', post_id=post.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+          </form>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

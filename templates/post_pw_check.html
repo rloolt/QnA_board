@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>비밀번호 확인</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      
+      <p>비밀글입니다.</p>
+      <p>비밀번호를 입력하세요.</p>
+      
+      <form method="POST">
+        <input type="password" name="input_pw" class="input" required autofocus>
+        
+        <div class="actions center">
+          <button type="submit" class="btn">확인</button>
+          <a href="{{ url_for('posts_list') }}" class="btn">취소</a>
+        </div>
+      </form>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <p style="color: red;">{{ messages[0] }}</p>
+        {% endif %}
+      {% endwith %}
+      
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>글 수정</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+
+      <form action="{{ url_for('post_edit', post_id=post.id) }}" method="POST" enctype="multipart/form-data">
+        <div class="post-box">
+          <div class="post-left">
+            <div class="cell head">제목</div>
+            <div class="cell body">내용</div>
+          </div>
+
+          <div class="post-right">
+            <input class="input title" name="title" value="{{ post.title }}" required />
+            <textarea class="input content" name="content" required>{{ post.content }}</textarea>
+            
+            <div style="padding: 10px; border-top: 1px solid #ddd;">
+              {% if post.filename %}
+                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">현재 파일: {{ post.filename }}</p>
+              {% endif %}
+              
+              <input type="file" name="file" class="input" style="border: none; padding: 0;">
+            </div>
+          </div>
+        </div>
+
+        <div class="actions right">
+          <button class="btn" type="submit">수정 완료</button>
+          <a class="btn" href="{{ url_for('post_detail', post_id=post.id) }}">취소</a>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</body>
+</html>

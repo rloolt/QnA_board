@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>비밀번호 재설정</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <h1 class="big-title">새 비밀번호 설정</h1>
+      <form class="form-vertical" action="/reset_pw_action" method="POST">
+        <input type="hidden" name="id" value="{{ user_id }}">
+        
+        <div class="regist_info">새로운 비밀번호</div>
+        <input class="input wide" type="password" name="new_pw" required />
+
+        <div class="actions right" style="margin-top: 20px;">
+          <button class="btn" type="submit">변경하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

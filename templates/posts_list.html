@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>QnA 게시판</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="box">
+    <p>
+      사용자: {{ session['user_id'] }}님 
+      <a href="{{ url_for('profile', user_id=session['user_id']) }}">[내 프로필]</a> 
+      <a href="{{ url_for('logout') }}">[로그아웃]</a>
+    </p>
+
+    <form action="/posts" method="GET">
+      <select name="search_type">
+        <option value="all">전체</option>
+        <option value="title">제목</option>
+        <option value="content">내용</option>
+      </select>
+      <input type="text" name="keyword" placeholder="검색어 입력">
+      <button type="submit">검색</button>
+    </form>
+
+    <hr> 
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <td>{{ post.id }}</td>
+          <td><a href="/post/{{ post.id }}">{{ post.title }}</a></td>
+          <td>
+            <a href="{{ url_for('profile', user_id=post.author) }}">{{ post.author }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if not posts %}
+      <p>등록된 글이 없습니다.</p>
+    {% endif %}
+
+    <br>
+    <a class="btn" href="{{ url_for('post_new') }}">글 작성하기</a>
+  </div>
+
+</body>
+</html>

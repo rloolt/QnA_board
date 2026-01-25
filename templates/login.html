@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>로그인</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <h1 class="big-title">Q&amp;A 게시판</h1>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div style="background-color: #f0f7ff; color: #007bff; padding: 12px; border: 1px solid #cce5ff; border-radius: 5px; margin-bottom: 20px; text-align: center; font-size: 14px;">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form class="form-grid" action="/login" method="POST">
+        <div class="label">ID</div>
+        <input class="input" name="id" required />
+
+        <button class="btn" type="submit">로그인</button>
+
+        <div class="label">PW</div>
+        <input class="input" type="password" name="pw" required />
+
+        <a class="btn" href="{{ url_for('register') }}">회원가입</a>
+      </form>
+
+      <div style="margin-top: 20px; text-align: center; font-size: 14px; border-top: 1px solid #eee; padding-top: 15px;">
+        <a href="{{ url_for('find_id') }}" style="color: #666; text-decoration: none; margin-right: 10px;">아이디 찾기</a>
+        <span style="color: #ccc;">|</span>
+        <a href="{{ url_for('find_pw') }}" style="color: #666; text-decoration: none; margin-left: 10px;">비밀번호 찾기</a>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

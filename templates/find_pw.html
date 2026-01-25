@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>비밀번호 찾기</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <h1 class="big-title">비밀번호 찾기</h1>
+      <p style="font-size: 13px; color: #666; margin-bottom: 20px;">정보 확인 후 비밀번호를 재설정합니다.</p>
+      <form class="form-vertical" action="/find_pw" method="POST">
+        <div class="regist_info">ID</div>
+        <input class="input wide" name="id" required />
+
+        <div class="regist_info">이름</div>
+        <input class="input wide" name="name" required />
+
+        <div class="regist_info">학교</div>
+        <input class="input wide" name="school" required />
+
+        <div class="actions right" style="margin-top: 20px;">
+          <button class="btn" type="submit">다음</button>
+          <a class="btn" href="{{ url_for('login') }}">취소</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

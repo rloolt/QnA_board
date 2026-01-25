@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>내 정보 수정</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <h2>내 정보 수정</h2>
+      <hr>
+
+      <form method="POST" enctype="multipart/form-data">
+        <div class="profile-info">
+          <p>이름</p>
+          <input type="text" name="name" value="{{ user.name }}" class="input wide" required>
+          
+          <p>학교</p>
+          <input type="text" name="school" value="{{ user.school }}" class="input wide" required>
+          
+          <p>프로필 이미지 변경</p>
+          <input type="file" name="profile_img" class="input wide">
+        </div>
+
+        <div class="actions center" style="margin-top: 20px;">
+          <button type="submit" class="btn">수정 완료</button>
+          <a href="{{ url_for('profile', user_id=session['user_id']) }}" class="btn gray">취소</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

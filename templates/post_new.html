@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>글 작성</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+
+      <form action="/post/new" method="POST" enctype="multipart/form-data">
+        <div class="post-box">
+          <div class="post-left">
+            <div class="cell head">제목</div>
+            <div class="cell body">내용</div>
+                     </div>
+
+          <div class="post-right">
+            <input class="input title" name="title" required />
+            <textarea class="input content" name="content" required></textarea>
+            
+            <div style="padding: 10px; border-top: 1px solid #ddd;">
+              <input type="file" name="file" class="input" style="border: none; padding: 0;">
+                       </div>
+          </div>
+<div style="margin-top: 10px; text-align: right;">
+    <span style="font-size: 14px;">비밀번호 설정: </span>
+    <input type="password" name="post_pw" placeholder="비밀번호를 입력하세요 (선택)">
+</div>
+        </div>
+
+        <div class="actions right">
+          <button class="btn" type="submit">글 작성</button>
+          <a class="btn" href="{{ url_for('posts_list') }}">목록</a>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</body>
+</html>
